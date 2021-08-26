@@ -1,0 +1,38 @@
+mixin sCert(data)
+	// start sCert
+	+b.SECTION.sCert.section#sCert&attributes(attributes)
+		+b.gray-txt Сертификат винодела
+		+e.container.container
+			+e.top-row.row.gy-5.align-items-center
+				+e.left-col.col-xl-auto
+					+b.section-title
+						h2 Сертификат винодела
+					+e.descr-title Описание
+					+e.descr
+						p С помощью сертификатов мы сможем принять ваше участие и поддержку проекта, а так же сформировать сообщество прекрасных людей, которые любят вино и ценят труд.
+						p.mb-0 Покупая сертификат вы получите несколько приятных бонусов:
+						ul
+							//-
+							li членство в клубе
+							li специальную пожизненную скидку на вино
+							li приоритетный доступ на самые важные мероприятия - сбор урожая и праздник вина
+						p Можно купить лично себе или в подарок, сделать корпоративным презентом для коллег, сотрудников, партнеров или клиентов.
+				.col-xl
+					+e.already-box
+						+e.a-txt
+							p Уже приобрели сертификат?
+							p Вы можете его зарегистрировать!
+						+e.a-btn(href="#")
+							span Перейти к регистрации
+							+e.a-icon
+								img(loading="lazy" src='img/svg/long-arrow-right.svg' alt="")
+
+		//-+e.items-row.row
+			+sCertItem({
+
+			})
+	// end sCert
+
+mixin sCertItem(data)
+	.col-md-3
+		+e.item

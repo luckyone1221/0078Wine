@@ -53,7 +53,7 @@ const JSCCommon = {
 		// });
 
 		$(".modal-close-js").click(function () {
-			fancybox.close();
+			Fancybox.close();
 		}); // fancybox.defaults.backFocus = false;
 
 		const linkModal = document.querySelectorAll(link);
@@ -116,12 +116,14 @@ const JSCCommon = {
 
 			let link = event.target.closest(".menu-mobile .menu a"); // (1)
 
-			if (!container || link) this.closeMenu();
+			let toggle = event.target.closest('.toggle-menu-mobile--js.on'); // (1)
+
+			if (!container && !toggle) this.closeMenu();
 		}, {
 			passive: true
 		});
 		window.addEventListener('resize', () => {
-			if (window.matchMedia("(min-width: 992px)").matches) this.closeMenu();
+			if (window.matchMedia("(min-width: 768px)").matches) this.closeMenu();
 		}, {
 			passive: true
 		});
@@ -130,46 +132,46 @@ const JSCCommon = {
 	// /mobileMenu
 	// tabs  .
 	tabscostume(tab) {
-		const tabs = document.querySelectorAll(tab);
-
-		const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
-
-		tabs.forEach(element => {
-			let tabs = element;
-			const tabsCaption = tabs.querySelector(".tabs__caption");
-			const tabsBtn = tabsCaption.querySelectorAll(".tabs__btn");
-			const tabsWrap = tabs.querySelector(".tabs__wrap");
-			const tabsContent = tabsWrap.querySelectorAll(".tabs__content");
-			const random = Math.trunc(Math.random() * 1000);
-			tabsBtn.forEach((el, index) => {
-				const data = "tab-content-".concat(random, "-").concat(index);
-				el.dataset.tabBtn = data;
-				const content = tabsContent[index];
-				content.dataset.tabContent = data;
-				if (!content.dataset.tabContent == data) return;
-				const active = content.classList.contains('active') ? 'active' : ''; // console.log(el.innerHTML);
-
-				content.insertAdjacentHTML("beforebegin", "<div class=\"tabs__btn-accordion  btn btn-primary  mb-1 ".concat(active, "\" data-tab-btn=\"").concat(data, "\">").concat(el.innerHTML, "</div>"));
-			});
-			tabs.addEventListener('click', function (element) {
-				const btn = element.target.closest("[data-tab-btn]:not(.active)");
-				if (!btn) return;
-				const data = btn.dataset.tabBtn;
-				const tabsAllBtn = this.querySelectorAll("[data-tab-btn");
-				const content = this.querySelectorAll("[data-tab-content]");
-				tabsAllBtn.forEach(element => {
-					element.dataset.tabBtn == data ? element.classList.add('active') : element.classList.remove('active');
-				});
-				content.forEach(element => {
-					element.dataset.tabContent == data ? (element.classList.add('active'), element.previousSibling.classList.add('active')) : element.classList.remove('active');
-				});
-			});
-		}); // $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
-		// 	$(this)
-		// 		.addClass('active').siblings().removeClass('active')
-		// 		.closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active')
-		// 		.eq($(this).index()).fadeIn().addClass('active');
-		// });
+		// const tabs = document.querySelectorAll(tab);
+		// const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+		// tabs.forEach(element => {
+		// 	let tabs = element;
+		// 	const tabsCaption = tabs.querySelector(".tabs__caption");
+		// 	const tabsBtn = tabsCaption.querySelectorAll(".tabs__btn");
+		// 	const tabsWrap = tabs.querySelector(".tabs__wrap");
+		// 	const tabsContent = tabsWrap.querySelectorAll(".tabs__content");
+		// 	const random = Math.trunc(Math.random() * 1000);
+		// 	tabsBtn.forEach((el, index) => {
+		// 		const data = `tab-content-${random}-${index}`;
+		// 		el.dataset.tabBtn = data;
+		// 		const content = tabsContent[index];
+		// 		content.dataset.tabContent = data;
+		// 		if (!content.dataset.tabContent == data) return;
+		// 		const active = content.classList.contains('active') ? 'active' : '';
+		// 		// console.log(el.innerHTML);
+		// 		content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary  mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
+		// 	})
+		// 	tabs.addEventListener('click', function (element) {
+		// 		const btn = element.target.closest(`[data-tab-btn]:not(.active)`);
+		// 		if (!btn) return;
+		// 		const data = btn.dataset.tabBtn;
+		// 		const tabsAllBtn = this.querySelectorAll(`[data-tab-btn`);
+		// 		const content = this.querySelectorAll(`[data-tab-content]`);
+		// 		tabsAllBtn.forEach(element => {
+		// 			element.dataset.tabBtn == data
+		// 				? element.classList.add('active')
+		// 				: element.classList.remove('active')
+		// 		});
+		// 		content.forEach(element => {
+		// 			element.dataset.tabContent == data
+		// 				? (element.classList.add('active'), element.previousSibling.classList.add('active'))
+		// 				: element.classList.remove('active')
+		// 		});
+		// 	})
+		// })
+		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
+			$(this).addClass('active').siblings().removeClass('active').closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active').eq($(this).index()).fadeIn().addClass('active');
+		});
 	},
 
 	// /tabs
@@ -218,7 +220,7 @@ const JSCCommon = {
 				type: 'POST',
 				data: data
 			}).done(function (data) {
-				fancybox.close();
+				Fancybox.close();
 				Fancybox.show([{
 					src: "#modal-thanks",
 					type: "inline"
@@ -300,9 +302,9 @@ const $ = jQuery;
 
 function eventHandler() {
 	// JSCCommon.ifie();
-	JSCCommon.modalCall(); // JSCCommon.tabscostume('.tabs--js');
-	// JSCCommon.mobileMenu();
-	// JSCCommon.inputMask();
+	JSCCommon.modalCall(); // JSCCommon.tabscostume('tabs');
+
+	JSCCommon.mobileMenu(); // JSCCommon.inputMask();
 	// JSCCommon.sendForm();
 	// JSCCommon.heightwindow();
 	// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
@@ -367,6 +369,45 @@ function eventHandler() {
 		slideToClickedSlide: true,
 		freeModeMomentum: true
 	})); // modal window
+	//luckyoneJs
+
+	let topNav = document.querySelector(".top-nav--js");
+
+	function calcHeaderHeight() {
+		document.documentElement.style.setProperty('--header-h', "".concat(topNav.offsetHeight, "px"));
+		if (!topNav) return;
+		window.scrollY > 0 ? topNav.classList.add('fixed') : topNav.classList.remove('fixed');
+	}
+
+	window.addEventListener('resize', calcHeaderHeight, {
+		passive: true
+	});
+	window.addEventListener('scroll', calcHeaderHeight, {
+		passive: true
+	});
+	calcHeaderHeight(); //
+
+	let sSliderSlider = new Swiper('.sSlider-slider-js', {
+		slidesPerView: 'auto',
+		loop: false,
+		spaceBetween: 36,
+		pagination: {
+			el: '.swiper-pagination',
+			type: "progressbar" //type: 'bullets',
+
+		},
+		navigation: {
+			nextEl: '.swiper-next',
+			prevEl: '.swiper-prev'
+		}
+	}); //
+
+	let thisYear = new Date().getFullYear();
+	$('.set-active-class-js').each(function () {
+		if (thisYear >= Number(this.getAttribute('data-year'))) {
+			$(this).addClass('dot-active');
+		}
+	}); //end luckyoneJs
 }
 
 ;

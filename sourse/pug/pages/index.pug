@@ -3,29 +3,28 @@ extends layout/main.pug
 
 include ../blocks/sContent/_sContent.pug
 include ../blocks/sContact/_sContact.pug
-include ../blocks/sTEst00/_sTEst00.pug
+include ../blocks/sSlider/_sSlider.pug
+include ../blocks/sAbout/_sAbout.pug
+include ../blocks/sVideo/_sVideo.pug
+include ../blocks/sPlan/_sPlan.pug
+include ../blocks/sCert/_sCert.pug
 
 block variables
 	- let  mainPage= 'main-page' 
-	- let  bg= null
+	- let  bg= '01.png'
 
 block title
 	- let  title= 'title'
 	title= title
 block pagecontent 
-	a.link-modal-js(href="#modal-call") sadasdsa 
-	a.link-modal-js(href="#modal-call") sadasdsa 
+	//-a.link-modal-js(href="#modal-call") sadasdsa
 	+mob-mnu()
-	+icon("telegram")
 	+header()
-	+top-nav()
-	
-	+topLine()
+		+top-nav()
 	+headerBlock()
-	+sForm()
-	+sContact()
+	+sSlider()
+	+sAbout()
+	+sVideo()
+	+sPlan()
+	+sCert()
 	+footer()
-      
-
-
-

@@ -1,15 +1,19 @@
-$default-font: "roboto";
+$default-font: "DIN2014";
+$mono: "Merriweather";
+$mono2: "Bodoni";
 // $file-form: ($file-formats: woff2 woff ttf);
 $addr: '../fonts/';
 $file-format: woff2;
 
 
 // If font from googlefont, next lines remove
+@include font-face ($default-font, $addr + "DIN2014/DIN2014-Light", 300, $file-formats: $file-format);
+@include font-face ($default-font, $addr + "DIN2014/DIN2014-Regular", 400, $file-formats: $file-format);
+@include font-face ($default-font, $addr + "DIN2014/DIN2014-DemiBoldItalic", 600, $file-formats: $file-format, $style: italic);
+@include font-face ($default-font, $addr + "DIN2014/DIN2014-Bold", 700, $file-formats: $file-format);
 
-@include font-face ($default-font, $addr + "Roboto-Regular/Roboto-Regular", $file-formats: $file-format);
-@include font-face ($default-font, $addr + "Roboto-Bold/Roboto-Bold", bold, $file-formats: $file-format);
-@include font-face ($default-font, $addr + "Roboto-Medium/Roboto-Medium", 500, $file-formats: $file-format);
-@include font-face ($default-font, $addr + "Roboto-Black/Roboto-Black", 900, $file-formats: $file-format);
+//
+@include font-face ($mono2, $addr + "Bodoni/BodoniFLF-Bold", 700, $file-formats: $file-format);
 
 // font-weight helper:
 // 100 Thin

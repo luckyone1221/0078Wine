@@ -6,111 +6,351 @@
 		<meta name="description" content="о чем страница">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=575,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no">
-		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
+		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
 		<link href="css/main.min.css" rel="stylesheet"/>
 	</head>
-	<body class="main-page">
-		<div class="main-wrapper"><a class="link-modal-js" href="#modal-call">sadasdsa </a><a class="link-modal-js" href="#modal-call">sadasdsa </a>
+	<body class="main-page" data-bg="01.png">
+		<div class="main-wrapper">
 			<div class="menu-mobile menu-mobile--js d-lg-none">
 				<div class="toggle-menu-mobile toggle-menu-mobile--js"><span></span>
 				</div>
 				<div class="menu-mobile__inner">
-					<ul class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-						<li class="menu-item menu-item-has-children"><a href="#" itemprop="url">О нас</a>
-							<ul class="sub-menu">
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Наши работы</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Цены</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Калькулятор</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Акции</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Заказать</a></li>
-							</ul>
-						</li>
-						<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Наши работы</a></li>
-						<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Цены</a></li>
-						<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Калькулятор</a></li>
-						<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Акции</a></li>
-						<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Заказать</a></li>
+					<a class="menu-mobile__logo mb-4" href="/"><img loading="lazy" src="img/svg/logo.svg" alt=""/>
+					</a>
+					<ul class="menu">
+						<li class="menu-item"><a href="#">О проекте</a></li>
+						<li class="menu-item"><a href="#">Обо мне</a></li>
+						<li class="menu-item"><a href="#">План проекта</a></li>
+						<li class="menu-item"><a href="#">Контакты</a></li>
 					</ul>
+					<div class="soc-row row">
+						<div class="col-auto">
+							<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-inst.svg" alt=""/>
+							</a>
+						</div>
+						<div class="col-auto">
+							<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-fb.svg" alt=""/>
+							</a>
+						</div>
+						<div class="col-auto">
+							<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-tg.svg" alt=""/>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--  мобильное меню-->
-			<svg class="icon icon-telegram ">
-				<use xlink:href="img/svg/sprite.svg#telegram"></use>
-			</svg>
 			<!-- start header-->
 			<header class="header" id="header">
-			</header>
-			<!-- end header-->
-			<!-- start top-nav-->
-			<div class="top-nav block-with-lazy">
-				<div class="container">
-					<div class="row">
-						<div class="col-auto d-lg-none">
-							<div class="toggle-menu-mobile toggle-menu-mobile--js"><span></span>
+				<!-- start top-nav-->
+				<div class="top-nav top-nav--js block-with-lazy">
+					<div class="container">
+						<div class="top-nav__row row">
+							<div class="top-nav__soc-col col d-none d-lg-block">
+								<div class="soc-row row">
+									<div class="col-auto">
+										<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-inst.svg" alt=""/>
+										</a>
+									</div>
+									<div class="col-auto">
+										<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-fb.svg" alt=""/>
+										</a>
+									</div>
+									<div class="col-auto">
+										<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-tg.svg" alt=""/>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col col-lg-auto order-first order-xl-0">
+								<a class="top-nav__logo" href="/"><img loading="lazy" src="img/svg/logo.svg" alt=""/>
+								</a>
+							</div>
+							<div class="col-auto col-xl d-none d-md-block">
+								<ul class="menu">
+									<li class="menu-item"><a href="#">О проекте</a></li>
+									<li class="menu-item"><a href="#">Обо мне</a></li>
+									<li class="menu-item"><a href="#">План проекта</a></li>
+									<li class="menu-item"><a href="#">Контакты</a></li>
+								</ul>
+							</div>
+							<div class="col-auto d-md-none">
+								<div class="toggle-menu-mobile toggle-menu-mobile--js"><span></span>
+								</div>
 							</div>
 						</div>
-						<div class="col d-none d-lg-block">
-							<ul class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-								<li class="menu-item menu-item-has-children"><a href="#" itemprop="url">О нас</a>
-									<ul class="sub-menu">
-										<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Наши работы</a></li>
-										<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Цены</a></li>
-										<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Калькулятор</a></li>
-										<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Акции</a></li>
-										<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Заказать</a></li>
-									</ul>
-								</li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Наши работы</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Цены</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Калькулятор</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Акции</a></li>
-								<li class="menu-item" itemprop="item"><a href="#" itemprop="url">Заказать</a></li>
-							</ul>
-						</div>
 					</div>
 				</div>
-			</div>
-			<!-- end top-nav-->
-			<!-- start topLine-->
-			<section class="topLine section" id="topLine">
-				<div class="container">
-					<div class="section-title text-center">
-						<h2>topLine</h2>
-					</div>
-					<div class="row"></div>
-				</div>
-			</section>
-			<!-- end topLine-->
+				<!-- end top-nav
+				//soc-
+				
+				-->
+			</header>
+			<!-- end header-->
 			<!-- start headerBlock-->
 			<div class="headerBlock section" id="headerBlock">
-				<div class="container">
-					<div class="section-title text-center">
-						<h2>headerBlock ds dfsdfdsfsd</h2>
+				<div class="headerBlock__bg"><img loading="lazy" src="img/@2x/headerBl-bg.jpg" alt=""/>
+				</div>
+				<div class="headerBlock__container container">
+					<div class="headerBlock__row row align-items-center">
+						<div class="headerBlock__soc-col col-xl-auto d-none d-xl-block">
+						</div>
+						<div class="col-xl">
+							<div class="section-title text-center">
+								<h1>На вершине горного плато</h1>
+								<p>недалеко от село Ароматное идут работы по запуску виноградника и винодельческого проекта в самом эпицентре лавандовых полей. Прованс в Крыму - что может быть более поэтичным для места под винодельню? А пока мы будем иследовать ароматы, вкусы и стили вина, писать об этом и общаться.</p>
+							</div>
+						</div>
+						<div class="headerBlock__soc-col col-xl-auto">
+							<div class="soc-row row justify-content-center">
+								<div class="col-auto">
+									<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-inst.svg" alt=""/>
+									</a>
+								</div>
+								<div class="col-auto">
+									<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-fb.svg" alt=""/>
+									</a>
+								</div>
+								<div class="col-auto">
+									<a class="soc-row__item" href="#"><img loading="lazy" src="img/svg/soc-tg.svg" alt=""/>
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="row"></div>
 				</div>
 			</div>
 			<!-- end headerBlock-->
-			<!-- start sForm-->
-			<section class="sForm section" id="sForm">
-				<div class="container">
-					<div class="section-title text-center">
-						<h2>sForm</h2>
+			<!-- start sSlider-->
+			<div class="sSlider section" id="sSlider">
+				<div class="sSlider__container container">
+					<div class="sSlider__slider-wrap">
+						<div class="swiper-container sSlider-slider-js">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-1.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-1.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-2.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-2.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-3.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-3.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-3.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-3.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-3.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-3.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-3.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-3.jpg" alt=""/>
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a class="sSlider__img" href="img/@2x/sSlider-3.jpg" data-fancybox="sSlider"><img loading="lazy" src="img/@2x/sSlider-3.jpg" alt=""/>
+									</a>
+								</div>
+							</div>
+							<div class="sSlider__pugin-row row align-items-center">
+								<div class="sSlider__pugin-col col-auto">
+									<div class="swiper-pagination"></div>
+								</div>
+								<div class="col-auto">
+									<div class="swiper-next"><img loading="lazy" src="img/svg/arrow-right.svg" alt=""/></div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="row"></div>
+				</div>
+			</div>
+			<!-- end sSlider-->
+			<!-- start sAbout-->
+			<section class="sAbout section" id="sAbout">
+				<div class="gray-txt">Обо мне
+				</div>
+				<div class="sAbout__container container">
+					<div class="sAbout__row row align-items-end">
+						<div class="sAbout__title-col col-lg-6 col-xl-auto text-center">
+							<div class="section-title">
+								<h2>Обо мне</h2>
+								<p>Приветствую всех! Дмитрий Вишневецкий, 39 лет. 3&#160;страны,&#160;3&#160;столицы. Беларус. Космополит.</p>
+							</div>
+							<div class="sAbout__box d-none d-lg-block">
+								<p>Вино не имеет границ и политических пристрастий.</p>
+								<p>Много лет я учился строить и создавать бизнесы и команды, достигать цели. Осмысление пути привело к желанию сфокусироваться на жизненном балансе и заниматься работой, имеющей долгосрочные перспективы. Создать то, что будет обладать ценностью и после меня.</p>
+								<p>Так я увлекся вином и виноделием, купил земельный участок под виноградники, привлек высококлассных специалистов.</p>
+							</div>
+						</div>
+						<div class="sAbout__portrait-col col-lg-6 col-xl-auto">
+							<div class="sAbout__portrait"><img loading="lazy" src="img/@2x/portrait.png" alt=""/>
+							</div>
+						</div>
+						<div class="col-12 d-lg-none">
+							<div class="sAbout__box">
+								<p>Вино не имеет границ и политических пристрастий.</p>
+								<p>Много лет я учился строить и создавать бизнесы и команды, достигать цели. Осмысление пути привело к желанию сфокусироваться на жизненном балансе и заниматься работой, имеющей долгосрочные перспективы. Создать то, что будет обладать ценностью и после меня.</p>
+								<p>Так я увлекся вином и виноделием, купил земельный участок под виноградники, привлек высококлассных специалистов.</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
-			<!-- end sForm-->
-			<!-- start sContact-->
-			<section class="sContact section" id="sContact">
-				<div class="container">
-					<div class="section-title text-center">
-						<h2>sContact</h2>
+			<!-- end sAbout-->
+			<!-- start sVideo-->
+			<div class="sVideo section" id="sVideo">
+				<a class="sVideo__link" href="https://www.youtube.com/watch?v=_osKm4gGOFo&amp;list=PLBSdPE852lAQRZILHAI6C9RBaeKHp4P6X&amp;index=114" data-fancybox="video"><img loading="lazy" src="img/@2x/sVideo-bg.png" alt=""/>
+					<div class="sVideo__btn"><span class="circle"></span><span class="circle"></span><span class="circle"></span><span class="circle"></span><img loading="lazy" src="img/svg/play-btn.svg" alt=""/>
 					</div>
-					<div class="row"></div>
+				</a>
+			</div>
+			<!-- end sVideo-->
+			<!-- start sPlan-->
+			<section class="sPlan section" id="sPlan">
+				<div class="sPlan__bg"><img loading="lazy" src="img/@2x/sPlan-bg.png" alt=""/>
+				</div>
+				<div class="sPlan__container container">
+					<div class="section-title text-center">
+						<h2>План проекта</h2>
+					</div>
+					<div class="sPlan__row row justify-content-center">
+						<div class="sPlan__col col-md-4 col-xl-auto">
+							<div class="sPlan__item text-md-center set-active-class-js" data-year="2021">
+								<div class="sPlan__row row align-items-center">
+									<div class="col-auto col-md-12">
+										<div class="sPlan__img"><img loading="lazy" src="img/svg/sPlan-1.svg" alt=""/>
+										</div>
+									</div>
+									<div class="col col-md-12">
+										<div class="sPlan__year">2021
+										</div>
+										<div class="sPlan__title">Посадка
+										</div>
+										<div class="sPlan__descr">Посажено <br> 3 клетки / 2,5 гектара / 11 332 лозы
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sPlan__col col-md-4 col-xl-auto">
+							<div class="sPlan__item text-md-center set-active-class-js" data-year="2022">
+								<div class="sPlan__row row align-items-center">
+									<div class="col-auto col-md-12">
+										<div class="sPlan__img"><img loading="lazy" src="img/svg/sPlan-2.png" alt=""/>
+										</div>
+									</div>
+									<div class="col col-md-12">
+										<div class="sPlan__year">2022
+										</div>
+										<div class="sPlan__title">Туризм
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sPlan__col col-md-4 col-xl-auto">
+							<div class="sPlan__item text-md-center set-active-class-js" data-year="2023">
+								<div class="sPlan__row row align-items-center">
+									<div class="col-auto col-md-12">
+										<div class="sPlan__img"><img loading="lazy" src="img/svg/sPlan-3.svg" alt=""/>
+										</div>
+									</div>
+									<div class="col col-md-12">
+										<div class="sPlan__year">2023
+										</div>
+										<div class="sPlan__title">Первый урожай
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sPlan__col col-md-4 col-xl-auto">
+							<div class="sPlan__item text-md-center set-active-class-js" data-year="2024">
+								<div class="sPlan__row row align-items-center">
+									<div class="col-auto col-md-12">
+										<div class="sPlan__img"><img loading="lazy" src="img/svg/sPlan-4.png" alt=""/>
+										</div>
+									</div>
+									<div class="col col-md-12">
+										<div class="sPlan__year">2024
+										</div>
+										<div class="sPlan__title">Первое белое вино
+										</div>
+										<div class="sPlan__descr">(5 000 бут)
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sPlan__col col-md-4 col-xl-auto">
+							<div class="sPlan__item text-md-center set-active-class-js" data-year="2025">
+								<div class="sPlan__row row align-items-center">
+									<div class="col-auto col-md-12">
+										<div class="sPlan__img"><img loading="lazy" src="img/svg/sPlan-5.svg" alt=""/>
+										</div>
+									</div>
+									<div class="col col-md-12">
+										<div class="sPlan__year">2025
+										</div>
+										<div class="sPlan__title">Первое красное вино
+										</div>
+										<div class="sPlan__descr">(3 000 бут)
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--sPlan--->
 				</div>
 			</section>
-			<!-- end sContact-->
+			<!-- end sPlan-->
+			<!-- start sCert-->
+			<section class="sCert section" id="sCert">
+				<div class="gray-txt">Сертификат винодела
+				</div>
+				<div class="sCert__container container">
+					<div class="sCert__top-row row gy-5 align-items-center">
+						<div class="sCert__left-col col-xl-auto">
+							<div class="section-title">
+								<h2>Сертификат винодела</h2>
+							</div>
+							<div class="sCert__descr-title">Описание
+							</div>
+							<div class="sCert__descr">
+								<p>С помощью сертификатов мы сможем принять ваше участие и поддержку проекта, а так же сформировать сообщество прекрасных людей, которые любят вино и ценят труд.</p>
+								<p class="mb-0">Покупая сертификат вы получите несколько приятных бонусов:</p>
+								<ul>
+									<li>членство в клубе</li>
+									<li>специальную пожизненную скидку на вино</li>
+									<li>приоритетный доступ на самые важные мероприятия - сбор урожая и праздник вина</li>
+								</ul>
+								<p>Можно купить лично себе или в подарок, сделать корпоративным презентом для коллег, сотрудников, партнеров или клиентов.</p>
+							</div>
+						</div>
+						<div class="col-xl">
+							<div class="sCert__already-box">
+								<div class="sCert__a-txt">
+									<p>Уже приобрели сертификат?</p>
+									<p>Вы можете его зарегистрировать!</p>
+								</div>
+								<a class="sCert__a-btn" href="#"><span>Перейти к регистрации</span>
+									<div class="sCert__a-icon"><img loading="lazy" src="img/svg/long-arrow-right.svg" alt=""/>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end sCert-->
 			<footer class="footer">
 				<div class="container">
 					<div class="row">
@@ -150,13 +390,9 @@
 		</div>
 		<!-- #modal-call-->
 		<!-- end modals-->
-		<!-- modal libs-->
 		<script src="libs/jquery/jquery.min.js"></script>
 		<script src="libs/@fancyapps/ui/fancybox.umd.js"></script>
-		<!-- modal libs-->
-		<!-- slider libs-->
-		<script src="libs/swiper/swiper-bundle.min.js"> </script>
-		<!-- /slider libs-->
+		<script src="libs/swiper/swiper-bundle.min.js"></script>
 		<script src="libs/inputmask/inputmask.min.js"></script>
 		<script src="js/libs.js"></script>
 		<script src="js/common.js"></script>

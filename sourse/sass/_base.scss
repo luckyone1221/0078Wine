@@ -9,7 +9,7 @@
 	height: 100%;
 	background-position: center 0;
 	opacity: 0;
-	// opacity: 0.7;
+	//opacity: 0.7;
 } 
 
 body,
@@ -120,7 +120,11 @@ body {
 }
 
 .section-title {
-	margin-bottom: var(--sTPB);
+	padding-bottom: var(--sTPB);
+
+	& > *:last-child{
+		margin-bottom: 0;
+	}
 }
 
 
@@ -332,30 +336,6 @@ ul {
 	}
 }
 
-.swiper-pagination {
-	width: 100%;
-	text-align: center;
-
-	&-bullet {
-		opacity: 1;
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background-color: #E6E6E6;
-		outline: none !important;
-		@include mt;
-		margin-left: rem(8);
-		// padding-right: rem(8);
-		margin-right: rem(5);
-		display: inline-block;
-
-		&-active,
-		&:hover {
-			background-color: var(--bs-primary) ;
-		}
-	}
-}
-
 
 
 
@@ -490,4 +470,107 @@ iframe {
 
 ::-webkit-calendar-picker-indicator {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='15' viewBox='0 0 24 24'><path fill='#{$primary}' d='M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z'/></svg>"); 
+}
+//
+h1{
+	line-height: calc(75/60);
+}
+
+h2{
+	line-height: calc(63/50);
+}
+//
+.accept-ratio-frame{
+	display: block;
+	width: 100%;
+	height: 0;
+	position: relative;
+
+	overflow: hidden;
+	&:hover{
+		img{
+			filter: brightness(80%);
+			//transform: scale(1.1);
+		}
+	}
+
+	img{
+		@include mt();
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
+.accept-ratio-frame-nh{
+	display: block;
+	width: 100%;
+	height: 0;
+	position: relative;
+	overflow: hidden;
+
+	img{
+		@include mt();
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
+
+//
+.swiper-pagination{
+	width: 100%;
+	text-align: center;
+
+	&-bullet {
+		opacity: 1;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: #E6E6E6;
+		outline: none !important;
+		@include mt;
+		margin-left: rem(8);
+		margin-right: rem(5);
+		display: inline-block;
+
+		&-active,
+		&:hover {
+			background-color: var(--bs-primary) ;
+		}
+	}
+
+	&-progressbar{
+		height: 6px!important;
+		background-color: transparent;
+		position: relative;
+		z-index: 1;
+
+		&:after{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+
+			width: 100%;
+			height: 1px;
+			background-color: $gray-550;
+		}
+	}
+	&-progressbar-fill{
+		display: block;
+		width: 100%;
+		height: 100% !important;
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		top: 0;
+		background-color: $black!important;
+	}
 }
