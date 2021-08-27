@@ -1,11 +1,5 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 let div = document.createElement('div');
 div.style.overflowY = 'scroll';
 div.style.width = '50px';
@@ -208,9 +202,16 @@ const JSCCommon = {
 
 
 		$(document).on('submit', "form", function (e) {
-			e.preventDefault();
+			event.preventDefault();
 			const th = $(this);
-			var data = th.serialize();
+			var data = th.serialize(); //check cart on empty
+
+			if (this.querySelector('.cart-inp-js').value === '' || this.querySelector('.cart-inp-js').value === '{}') {
+				let cartWrap = document.querySelector('.cart-items-js');
+				cartWrap.innerHTML = '<h4>Что бдем Покупать?</h4>';
+				return;
+			}
+
 			th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
 			th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
 			th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
@@ -273,28 +274,8 @@ const JSCCommon = {
 		if (currentYear) currentYear.innerText = now.getFullYear();
 	},
 
-	toggleShow(toggle, drop) {
-		let catalogDrop = drop;
-		let catalogToggle = toggle;
-		$(document).on('click', catalogToggle, function () {
-			$(this).toggleClass('active').next().fadeToggle('fast', function () {
-				$(this).toggleClass("active");
-			});
-		});
-		document.addEventListener('mouseup', event => {
-			let container = event.target.closest(catalogDrop + ".active"); // (1)
-
-			let link = event.target.closest(catalogToggle); // (1)
-
-			if (!container || !catalogToggle) {
-				$(catalogDrop).removeClass('active').fadeOut();
-				$(catalogToggle).removeClass('active');
-			}
-
-			;
-		}, {
-			passive: true
-		});
+	checkEmptyVal() {
+		this.value !== '' || this.tagName == "SELECT" && this.querySelector('option').value !== null && this.querySelector('option').text || this.type == "date" ? $(this).addClass('not-empty') : $(this).removeClass('not-empty');
 	}
 
 };
@@ -304,11 +285,12 @@ function eventHandler() {
 	// JSCCommon.ifie();
 	JSCCommon.modalCall(); // JSCCommon.tabscostume('tabs');
 
-	JSCCommon.mobileMenu(); // JSCCommon.inputMask();
-	// JSCCommon.sendForm();
-	// JSCCommon.heightwindow();
-	// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
+	JSCCommon.mobileMenu();
+	JSCCommon.inputMask();
+	JSCCommon.sendForm(); // JSCCommon.heightwindow();
 	// JSCCommon.animateScroll();
+	// $('.has-ph-js').blur(JSCCommon.checkEmptyVal).each(JSCCommon.checkEmptyVal);
+	// $('.has-ph-js.select-custom--js').on('select', JSCCommon.checkEmptyVal);
 	// JSCCommon.CustomInputFile(); 
 
 	var x = window.location.host;
@@ -317,59 +299,9 @@ function eventHandler() {
 
 	if (screenName && x.includes("localhost:30")) {
 		document.body.insertAdjacentHTML("beforeend", "<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
-	}
-
-	function setFixedNav() {
-		let topNav = document.querySelector('.top-nav  ');
-		if (!topNav) return;
-		window.scrollY > 0 ? topNav.classList.add('fixed') : topNav.classList.remove('fixed');
-	}
-
-	function whenResize() {
-		setFixedNav();
-	}
-
-	window.addEventListener('scroll', () => {
-		setFixedNav();
-	}, {
-		passive: true
-	});
-	window.addEventListener('resize', () => {
-		whenResize();
-	}, {
-		passive: true
-	});
-	whenResize();
-	let defaultSl = {
-		spaceBetween: 0,
-		lazy: {
-			loadPrevNext: true
-		},
-		watchOverflow: true,
-		spaceBetween: 0,
-		loop: true,
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-		pagination: {
-			el: ' .swiper-pagination',
-			type: 'bullets',
-			clickable: true // renderBullet: function (index, className) {
-			// 	return '<span class="' + className + '">' + (index + 1) + '</span>';
-			// }
-
-		}
-	};
-	const swiper4 = new Swiper('.sBanners__slider--js', _objectSpread(_objectSpread({}, defaultSl), {}, {
-		slidesPerView: 'auto',
-		freeMode: true,
-		loopFillGroupWithBlank: true,
-		touchRatio: 0.2,
-		slideToClickedSlide: true,
-		freeModeMomentum: true
-	})); // modal window
+	} // modal window
 	//luckyoneJs
+
 
 	let topNav = document.querySelector(".top-nav--js");
 
@@ -407,6 +339,145 @@ function eventHandler() {
 		if (thisYear >= Number(this.getAttribute('data-year'))) {
 			$(this).addClass('dot-active');
 		}
+	}); //inpmaks??
+
+	$('.number-mask-js').each(function () {
+		Inputmask(this.getAttribute('data-mask')).mask(this);
+	}); //readmore
+
+	let readMoreConts = document.querySelectorAll('.rm-cont-js');
+
+	for (let cont of readMoreConts) {
+		let btn = cont.querySelector('.rm-btn-js');
+		btn.addEventListener('click', function () {
+			this.classList.toggle('active');
+			let hidden = cont.querySelector('.rm-hidden-js');
+			let visiable = cont.querySelector('.rm-visible-js');
+			$(hidden).slideToggle(function () {
+				$(this).toggleClass('active');
+			});
+			$(visiable).toggleClass('active');
+		});
+	} //cart
+	//controll
+
+
+	let cart = {
+		cartItems: {},
+		cartWrap: document.querySelector('.cart-items-js'),
+		hiddenInp: document.querySelector('.hidden-inputs-js input[type="hidden"]'),
+		makeProdControlls: function (Proditem) {
+			let cart = this;
+			let inp = Proditem.querySelector('.amount-inp-js');
+			let min = Proditem.querySelector('.min-btn-js');
+			let plus = Proditem.querySelector('.plus-btn-js');
+			let add = Proditem.querySelector('.add-btn-js');
+			$(min).click(function () {
+				inp.value = Number(inp.value) - 1;
+				!inp.reportValidity() ? inp.value = 1 : '';
+				Proditem.setAttribute('data-amount', inp.value);
+			});
+			$(plus).click(function () {
+				inp.value = Number(inp.value) + 1;
+				!inp.reportValidity() ? inp.value = 1 : '';
+				Proditem.setAttribute('data-amount', inp.value);
+			});
+			$(inp).change(function () {
+				!inp.reportValidity() ? inp.value = 1 : '';
+				Proditem.setAttribute('data-amount', inp.value);
+			});
+			$(add).click(cart.addProdItem.bind(this, Proditem));
+		},
+		addProdItem: function (Proditem) {
+			let itemProps = {
+				name: Proditem.getAttribute('data-name'),
+				descr: Proditem.getAttribute('data-descr'),
+				price: Proditem.getAttribute('data-price'),
+				amount: Proditem.getAttribute('data-amount')
+			};
+			this.cartItems[Proditem.getAttribute('id')] = itemProps;
+			this.renderCart();
+		},
+		//cart methods
+		onCartInputChange: function (cartItem) {
+			let thisProdItemId = cartItem.getAttribute('data-prod-item-id');
+			let thisProdItem = document.querySelector("#".concat(thisProdItemId));
+			let thisProdItemInp = thisProdItem.querySelector(".amount-inp-js");
+			let inp = cartItem.querySelector('.amount-inp-js');
+			thisProdItemInp.value = inp.value;
+			thisProdItem.setAttribute('data-amount', inp.value);
+			cart.cartItems[thisProdItemId].amount = inp.value;
+			cart.renderCart();
+		},
+		makeCartControlls: function (cartItem) {
+			let cart = this;
+			let thisProdItemId = cartItem.getAttribute('data-prod-item-id');
+			let thisProdItem = document.querySelector("#".concat(thisProdItemId));
+			let thisProdItemInp = thisProdItem.querySelector(".amount-inp-js");
+			let inp = cartItem.querySelector('.amount-inp-js');
+			let min = cartItem.querySelector('.min-btn-js');
+			let plus = cartItem.querySelector('.plus-btn-js');
+			let removeBtn = cartItem.querySelector('.remove-btn-js');
+			$(min).click(function () {
+				inp.value = Number(inp.value) - 1;
+				!inp.reportValidity() ? inp.value = 1 : '';
+				cart.onCartInputChange(cartItem);
+			});
+			$(plus).click(function () {
+				inp.value = Number(inp.value) + 1;
+				!inp.reportValidity() ? inp.value = 1 : '';
+				cart.onCartInputChange(cartItem);
+			});
+			$(inp).change(function () {
+				!inp.reportValidity() ? inp.value = 1 : '';
+				cart.onCartInputChange(cartItem);
+			});
+			$(removeBtn).click(function () {
+				delete cart.cartItems[thisProdItemId];
+				thisProdItemInp.value = 1;
+				thisProdItem.setAttribute('data-amount', 1);
+				cart.renderCart();
+			});
+		},
+		getCardTemplate: function (itemObj, itemId) {
+			// cart-item-js[data-prod-item-id]
+			// amount-inp-js
+			// min-btn-js
+			// plus-btn-js
+			// remove-btn-js
+			let template = "\n\t\t\t\t<div class=\"sCart__item cart-item-js\" data-prod-item-id=\"".concat(itemId, "\">\n\t\t\t\t\t<div class=\"sCart__i-row row align-items-center gy-3\">\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__num\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col\">\n\t\t\t\t\t\t\t<div class=\"sCart__name\">\n\t\t\t\t\t\t\t\t").concat(itemObj.name, "\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t").concat(itemObj.descr && "<div class=\"sCart__descr\"> ".concat(itemObj.descr, " </div>") || '', "\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-12 m-0 d-md-none\"></div>\n\t\t\t\t\t\t<div class=\"col col-md-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__control\">\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--minus min-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t-\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<input \n\t\t\t\t\t\t\t\t\tclass=\"sCart__input form-control amount-inp-js\"\n\t\t\t\t\t\t\t\t\tpattern=\"[0-9]{1,2}\" type=\"number\" min=\"1\" max=\"99\"\n\t\t\t\t\t\t\t\t\tvalue=\"").concat(itemObj.amount, "\" />\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--plus plus-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t+\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__price\">\n\t\t\t\t\t\t\t\t<b>").concat(Number(itemObj.amount.replace(/\s/g, '')) * Number(itemObj.price.replace(/\s/g, '')), "</b>\n\t\t\t\t\t\t\t\t\u0440.\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<button class=\"sCart__remove-btn remove-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t+\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t");
+			return template;
+		},
+		renderCart: function () {
+			this.cartWrap.innerHTML = '';
+
+			for (let [itemId, itemObj] of Object.entries(this.cartItems)) {
+				this.cartWrap.innerHTML += this.getCardTemplate(itemObj, itemId);
+			}
+
+			let cartItems = this.cartWrap.querySelectorAll('.cart-item-js');
+
+			for (let item of cartItems) {
+				this.makeCartControlls(item);
+			}
+
+			this.renderHiddenInps();
+		},
+		//
+		getHiddenInp: function (itemObj) {
+			return "\n\t\t\t\t<input type=\"hidden\" \n\t\t\t\t\tname=\"".concat(itemObj.itemName, "\"\n\t\t\t\t\tdata-name=\"").concat(itemObj.itemName, "\"\n\t\t\t\t\tdata-descr=\"").concat(itemObj.descr, "\"\n\t\t\t\t\tdata-price=\"").concat(itemObj.price, "\"\n\t\t\t\t\tdata-amount=\"").concat(itemObj.amount, "\"\n\t\t\t\t/>\n\t\t\t");
+		},
+		renderHiddenInps: function () {
+			this.hiddenInp.value = JSON.stringify(this.cartItems); //wrong way
+			// this.hiddenInps.innerHTML = '';
+			// for (let [itemId,itemObj] of Object.entries(this.cartItems)){
+			// 	this.hiddenInps.innerHTML += this.getHiddenInp(itemObj);
+			// }
+		}
+	}; //start cart
+
+	$('.prod-item--js').each(function () {
+		cart.makeProdControlls(this);
 	}); //end luckyoneJs
 }
 

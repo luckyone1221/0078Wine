@@ -38,10 +38,13 @@ $white: #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
+$gray-310: #E7E7E7;
+$gray-320: #DADADA;
+$gray-400: #DEDEDE !default;
 $gray-500: #adb5bd !default;
 $gray-550: #9A9A9A;
 $gray-600: #6c757d !default;
+$gray-650: #787878;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #323232;
@@ -112,6 +115,8 @@ $theme-colors: ("primary": $primary,
   "warning": $warning,
   "danger": $danger,
   "light": $light,
+  "white": $white,
+  "black": $black,
   "dark": $dark) !default;
 // scss-docs-end theme-colors-map
 
@@ -400,8 +405,8 @@ $line-height-lg: 2 !default;
 
 $h1-font-size: rem(60);
 $h2-font-size: rem(50);
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
+$h3-font-size: rem(40);
+$h4-font-size: rem(30);
 $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
 // scss-docs-end font-variables

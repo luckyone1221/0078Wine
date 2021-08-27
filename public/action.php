@@ -12,22 +12,18 @@ $mail->CharSet = 'utf-8';
 ///who send 
 $mail->setFrom('info@info.com','info info');
 
- $mail->addAddress('wol1414@gmail.com');
+ $mail->addAddress('luckyone1221@gmail.com');
  // $mail->addAddress('horenkova369@gmail.com');
 // $mail->addAddress('stab@inbox.support');
 
 
 
 //Субъект
-$mail->Subject = 'Заявка с сайта';
+$mail->Subject = 'Покупка с сайта AROMATNOE vineyard';
 
 $time = date('d.m.Y в H:i');
 $html = '
-
 <table style="width: 100%;">';
-    if (!empty($_POST['order'])) {
-        $html .= ' <tr style="background-color: #f8f8f8;">  <td style="padding: 10px; border: #e9e9e9 1px solid;">Вид формы:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['order'] . '</b></td></tr>';
-    }
 
     if (!empty($_POST['name'])) {
         $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;">Name:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['name'] . '</b></td></tr>';
@@ -40,14 +36,25 @@ $html = '
     if (!empty($_POST['email'])) {
         $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Email:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['email'] . '</b></td></tr>';
     }
-
-    if (!empty($_POST['text'])) {
-        $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Вопрос:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['text'] . '</b></td>';
+    if (!empty($_POST['cart']){
+        $cart_data = json_decode($_POST['cart']);
+        $html .= '<tr style="background-color: #89785F;"> 
+                    <td style="padding: 10px; border: #e9e9e9 1px solid;"> Корзина:</td>
+                  </tr>';
+        foreach ($cart_data as $item_id => $item_props){
+            foreach ($item_props as $prop_name => $prop_val){
+                $html .= '<tr style="background-color: #f8f8f8;">
+                        <td style="padding: 10px; border: #e9e9e9 1px solid;">
+                          ' . $prop_name . '
+                        </td>
+                        <td style="padding: 10px; border: #e9e9e9 1px solid;">
+                          ' . $prop_val . '
+                        </td>
+                        </tr>';
+            }
+        }
     }
 
-    if (!empty($_POST['comment'])) {
-        $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Отзыв:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['comment'] . '</b></td>';
-    }
 
     // if (!empty($_POST['tech'])) {
     //     $html .= ' <tr style="background-color: #f8f8f8;">  <td style="padding: 10px; border: #e9e9e9 1px solid;"> Техника:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . implode(", ",$_POST['tech']) . '</b></td></tr>';

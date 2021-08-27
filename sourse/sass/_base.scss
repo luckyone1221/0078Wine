@@ -1,5 +1,6 @@
 .pixel-perfect {
-	top: 0;
+	//top: 0;
+	top: 71px;
 	display: block;
 	@include a-cent(x);
 	pointer-events: none;
@@ -479,6 +480,10 @@ h1{
 h2{
 	line-height: calc(63/50);
 }
+h4{
+	line-height: calc(38/30);
+}
+
 //
 .accept-ratio-frame{
 	display: block;
