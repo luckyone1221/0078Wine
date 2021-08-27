@@ -1,6 +1,6 @@
 .pixel-perfect {
-	//top: 0;
-	top: 71px;
+	top: 0;
+	//top: 71px;
 	display: block;
 	@include a-cent(x);
 	pointer-events: none;
@@ -532,6 +532,7 @@ h4{
 	width: 100%;
 	text-align: center;
 
+	//bullets
 	&-bullet {
 		opacity: 1;
 		width: 8px;
@@ -550,6 +551,7 @@ h4{
 		}
 	}
 
+	//pb
 	&-progressbar{
 		height: 6px!important;
 		background-color: transparent;
@@ -578,4 +580,5 @@ h4{
 		top: 0;
 		background-color: $black!important;
 	}
+
 }

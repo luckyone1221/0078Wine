@@ -11,11 +11,10 @@ include components/btn.pug
 
 
 mixin arrow()
-	.swiper-button-hand.swiper-button-hand-prev.swiper-button-prev
-		+icon('chevron-left')
-	.swiper-button-hand.swiper-button-hand-next.swiper-button-next
-		+icon('chevron-right')
-//- /arrow for swiper-slider
+	.swiper-prev
+		img(loading="lazy" src="img/svg/c-arrow-left.svg" alt="")
+	.swiper-next
+		img(loading="lazy" src="img/svg/c-arrow-right.svg" alt="")
 
 mixin ie11()
 	//- modernizer and for ie11

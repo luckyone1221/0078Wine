@@ -27,13 +27,13 @@ mixin top-nav()
 	// end top-nav
 		//soc-
 
-mixin headerSocRow()
+mixin headerSocRow(mod='')
 	+b.soc-row.row&attributes(attributes)
-		+headerSocRowItem('inst')
-		+headerSocRowItem('fb')
-		+headerSocRowItem('tg')
+		+headerSocRowItem('inst', mod)
+		+headerSocRowItem('fb', mod)
+		+headerSocRowItem('tg', mod)
 
-mixin headerSocRowItem(imgName)
+mixin headerSocRowItem(imgName, mod='')
 	.col-auto
 		+e.item(href="#")
-			img(loading="lazy" src=`img/svg/soc-${imgName}.svg` alt="")
+			img(loading="lazy" src=`img/svg/soc${mod}-${imgName}.svg` alt="")

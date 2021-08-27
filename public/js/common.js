@@ -464,20 +464,27 @@ function eventHandler() {
 			this.renderHiddenInps();
 		},
 		//
-		getHiddenInp: function (itemObj) {
-			return "\n\t\t\t\t<input type=\"hidden\" \n\t\t\t\t\tname=\"".concat(itemObj.itemName, "\"\n\t\t\t\t\tdata-name=\"").concat(itemObj.itemName, "\"\n\t\t\t\t\tdata-descr=\"").concat(itemObj.descr, "\"\n\t\t\t\t\tdata-price=\"").concat(itemObj.price, "\"\n\t\t\t\t\tdata-amount=\"").concat(itemObj.amount, "\"\n\t\t\t\t/>\n\t\t\t");
-		},
 		renderHiddenInps: function () {
-			this.hiddenInp.value = JSON.stringify(this.cartItems); //wrong way
-			// this.hiddenInps.innerHTML = '';
-			// for (let [itemId,itemObj] of Object.entries(this.cartItems)){
-			// 	this.hiddenInps.innerHTML += this.getHiddenInp(itemObj);
-			// }
+			this.hiddenInp.value = JSON.stringify(this.cartItems);
 		}
 	}; //start cart
 
 	$('.prod-item--js').each(function () {
 		cart.makeProdControlls(this);
+	}); //-
+
+	let sSocSlider = new Swiper('.sSoc-slider-js', {
+		slidesPerView: 'auto',
+		loop: false,
+		spaceBetween: 36,
+		pagination: {
+			el: '.sSoc--js .swiper-pagination',
+			type: "fraction"
+		},
+		navigation: {
+			nextEl: '.sSoc--js .swiper-next',
+			prevEl: '.sSoc--js .swiper-prev'
+		}
 	}); //end luckyoneJs
 }
 

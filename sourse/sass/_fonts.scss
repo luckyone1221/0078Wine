@@ -1,6 +1,7 @@
 $default-font: "DIN2014";
 $mono: "Merriweather";
 $mono2: "Bodoni";
+$mono3: "";
 // $file-form: ($file-formats: woff2 woff ttf);
 $addr: '../fonts/';
 $file-format: woff2;
@@ -14,6 +15,10 @@ $file-format: woff2;
 
 //
 @include font-face ($mono2, $addr + "Bodoni/BodoniFLF-Bold", 700, $file-formats: $file-format);
+
+//
+@include font-face ($mono3, $addr + "MuseoSansCyrl/MuseoSansCyrl-500", 500, $file-formats: $file-format);
+@include font-face ($mono3, $addr + "MuseoSansCyrl/MuseoSansCyrl-700", 700, $file-formats: $file-format);
 
 // font-weight helper:
 // 100 Thin

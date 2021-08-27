@@ -12,3 +12,16 @@ mixin mnu()
 			li.menu-item: a(href=linkPatch)= linkName
 
 //- menu
+
+mixin mnu2()
+	-
+		var nav= {
+			"О проекте":"#",
+			"Обо мне":"#",
+			"План проекта":"#",
+			"Сертификат винодела":"#",
+			"Контакты":"#",
+		}
+	ul.menu
+		each linkPatch, linkName in nav
+			li.menu-item: a(href=linkPatch)= linkName

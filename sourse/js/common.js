@@ -506,30 +506,30 @@ function eventHandler() {
 			this.renderHiddenInps();
 		},
 		//
-		getHiddenInp: function (itemObj){
-			return `
-				<input type="hidden" 
-					name="${itemObj.itemName}"
-					data-name="${itemObj.itemName}"
-					data-descr="${itemObj.descr}"
-					data-price="${itemObj.price}"
-					data-amount="${itemObj.amount}"
-				/>
-			`;
-		},
 		renderHiddenInps: function (){
 			this.hiddenInp.value = JSON.stringify(this.cartItems);
-			//wrong way
-			// this.hiddenInps.innerHTML = '';
-			// for (let [itemId,itemObj] of Object.entries(this.cartItems)){
-			// 	this.hiddenInps.innerHTML += this.getHiddenInp(itemObj);
-			// }
 		},
 	};
 
 	//start cart
 	$('.prod-item--js').each(function (){
 		cart.makeProdControlls(this);
+	});
+	//-
+	let sSocSlider = new Swiper('.sSoc-slider-js', {
+		slidesPerView: 'auto',
+		loop: false,
+		spaceBetween: 36,
+
+		pagination: {
+			el: '.sSoc--js .swiper-pagination',
+			type: "fraction",
+		},
+		navigation: {
+			nextEl: '.sSoc--js .swiper-next',
+			prevEl: '.sSoc--js .swiper-prev',
+		},
+
 	});
 
 	//end luckyoneJs
