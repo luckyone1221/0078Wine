@@ -558,10 +558,45 @@ function eventHandler() {
 			})
 		}
 	})
+	//- 1
+	//-let token = 'IGQVJVYmNqOEpkU2luSVJyem5hUHNyWU9kQjBxZA3hWd1Rld2RlZAEp3Q2lhdDJHTjFZAekVCdFcxMzRFbWRMMUFGMFQyYkpmNGRNemxDUm4zY3hBU2t4OWIxRHpKSWhSVzU1cHVmZAkxmWlg1cm1tVlFGWgZDZD'; // ваш токен
+	// let token = 'IGQVJVYmNqOEpkU2luSVJyem5hUHNyWU9kQjBxZA3hWd1Rld2RlZAEp3Q2lhdDJHTjFZAekVCdFcxMzRFbWRMMUFGMFQyYkpmNGRNemxDUm4zY3hBU2t4OWIxRHpKSWhSVzU1cHVmZAkxmWlg1cm1tVlFGWgZDZD'; // ваш токен
+	// let	userid = '726781521519447'; // id пользователя
+	// let	num_photos = 10; // Количество фотографий, которые вы хотите получить
+	//
+	// $.ajax({
+	// 	url: 'https://api.instagram.com/v1/users/' + userid + '/media/recent',
+	// 	dataType: 'jsonp',
+	// 	type: 'GET',
+	// 	data: {access_token: token, count: num_photos},
+	// 	success: function(data){
+	// 		console.log(data);
+	// 		for( x in data.data ){
+	// 			$('#av_instafeed').append('<li><img src="'+data.data[x].images.low_resolution.url+'"></li>');
+	// 			// data.data[x].link - URL поста в Инстаграме
+	// 			// data.data[x].images.standard_resolution.url - URL изображений 612х612
+	// 		}
+	// 	},
+	// 	error: function(data){
+	// 		console.log(data); // отправим сообщение в консоль, если появятся ошибки
+	// 	}
+	// });
 
+	//-???
+	// const getMediaByUsername = require('nanogram.js').getMediaByUsername;
+	//
+	// getMediaByUsername('instagram').then((media) => {
+	// 	console.log(media);
+	// });
+	const getMediaByUsername = window.Nanogram.getMediaByUsername;
+
+	getMediaByUsername('luckyone612').then((media) => {
+		console.log(media);
+	});
 
 	//end luckyoneJs
 };
+
 if (document.readyState !== 'loading') {
 	eventHandler();
 } else {

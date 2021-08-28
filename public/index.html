@@ -5,26 +5,29 @@
 		<title>title</title>
 		<meta name="description" content="о чем страница">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="format-detection" content="telephone=no">
-		<meta name="viewport" content="width=570,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no">
-		<script>
-			let viewport = document.querySelector("meta[name=viewport]");
-			var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-			if (is_safari) {
-				//- alert(navigator.userAgent);
-				function w() {
-					this.outerWidth > 570
-									? viewport.content = "width=device-width, initial-scale=1.0,  maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
-									: viewport.content = "width=570,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no"
-					//- alert(this.outerWidth + ', '+  viewport.content);
-				}
-			
-				w();
-				window.addEventListener('resize', () => w(), {passive: true});
-			}
-		</script>
-		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> <link rel="preconnect" href="https://fonts.googleapis.com">
+		<!--meta(name="viewport" content="width=570,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no")-->
+		<!--script.-->
+		<!--	let viewport = document.querySelector("meta[name=viewport]");-->
+		<!--	var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);-->
+		<!--	if (is_safari) {-->
+		<!--		//- alert(navigator.userAgent);-->
+		<!--		function w() {-->
+		<!--			this.outerWidth > 570-->
+		<!--							? viewport.content = "width=device-width, initial-scale=1.0,  maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"-->
+		<!--							: viewport.content = "width=570,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no"-->
+		<!--			//- alert(this.outerWidth + ', '+  viewport.content);-->
+		<!--		}-->
+		<!---->
+		<!--		w();-->
+		<!--		window.addEventListener('resize', () => w(), {passive: true});-->
+		<!--	}-->
+		<!--//--->
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no">
+		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+		<!--<link rel="preconnect" href="https://unpkg.com">-->
+		<!--<link rel="preconnect" href="https://cdn.jsdelivr.net">-->
 		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
 		<link href="css/main.min.css" rel="stylesheet"/>
 	</head>
@@ -587,6 +590,12 @@
 							<div class="form-wrap">
 								<form>
 									<input type="hidden" name="message-from" value="Корзина"/>
+									<input name="example-input-field" type="hidden"/>
+									<input class="order" name="order" type="hidden" value="Заявка  с сайта"/>
+									<input class="utm_source" name="utm_source" type="hidden"/>
+									<input class="utm_term" name="utm_term" type="hidden"/>
+									<input class="utm_medium" name="utm_medium" type="hidden"/>
+									<input class="utm_campaign" name="utm_campaign" type="hidden"/>
 									<div class="hidden-inputs-js d-none">
 										<input class="cart-inp-js" type="hidden" value="" name="cart"/>
 									</div>
@@ -770,6 +779,12 @@
 								<div class="form-wrap">
 									<form>
 										<input type="hidden" name="message-from" value="Подписаться на рассылку"/>
+										<input name="example-input-field" type="hidden"/>
+										<input class="order" name="order" type="hidden" value="Заявка  с сайта"/>
+										<input class="utm_source" name="utm_source" type="hidden"/>
+										<input class="utm_term" name="utm_term" type="hidden"/>
+										<input class="utm_medium" name="utm_medium" type="hidden"/>
+										<input class="utm_campaign" name="utm_campaign" type="hidden"/>
 										<div class="form-wrap__img form-wrap__img--top d-none d-xl-block"><img loading="lazy" src="img/svg/subscribe-news-top.svg" alt=""/>
 										</div>
 										<div class="h5 text-danger d-xl-none">Подписаться на рассылку новостей</div>
@@ -868,6 +883,12 @@
 					<div class="form-wrap">
 						<form>
 							<input type="hidden" name="message-from" value="Регистрация сертификата"/>
+							<input name="example-input-field" type="hidden"/>
+							<input class="order" name="order" type="hidden" value="Заявка  с сайта"/>
+							<input class="utm_source" name="utm_source" type="hidden"/>
+							<input class="utm_term" name="utm_term" type="hidden"/>
+							<input class="utm_medium" name="utm_medium" type="hidden"/>
+							<input class="utm_campaign" name="utm_campaign" type="hidden"/>
 							<div class="form-wrap__steps">
 								<div class="form-wrap__step modal-reg-step-js active">
 									<div class="form-wrap__step-content">
@@ -944,6 +965,10 @@
 		<script src="libs/@fancyapps/ui/fancybox.umd.js"></script>
 		<script src="libs/swiper/swiper-bundle.min.js"></script>
 		<script src="libs/inputmask/inputmask.min.js"></script>
+		<script src="libs/nanogram.js/nanogram.iife.js"></script>
+		<!--script(src="libs/nanogram.js/nanogram.esm.js")-->
+		<!--script(src="libs/nanogram.js/nanogram.cjs.js")-->
+		<!--<script src="https://unpkg.com/nanogram.js@3.0.3/dist/nanogram.iife.js"></script>-->
 		<script src="js/libs.js"></script>
 		<script src="js/common.js"></script>
 	</body>

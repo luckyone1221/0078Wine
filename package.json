@@ -59,6 +59,7 @@
     "inputmask": "^5.0.6",
     "jquery": "^3.5.1",
     "loading-attribute-polyfill": "^1.5.4",
+    "nanogram.js": "^3.2.0",
     "swiper": "^6.8.4"
   }
 }

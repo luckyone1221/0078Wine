@@ -10,7 +10,10 @@
     --sTPB: #{rem(45)};
   }
 
-  --bs-body-font-size: 19px;
+  --bs-body-font-size: 13px;
+  @media (min-width: 375px) {
+    --bs-body-font-size: 14px;
+  }
   @include media-breakpoint-up(md){
     --bs-body-font-size: 14px;
   }
