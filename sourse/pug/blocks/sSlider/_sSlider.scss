@@ -1,6 +1,7 @@
 // start .sSlider
 .sSlider {
 	--sPT: 0;
+	overflow: hidden;
 
 	--sPB: #{rem(30px)};
 	@include media-breakpoint-up(xl){

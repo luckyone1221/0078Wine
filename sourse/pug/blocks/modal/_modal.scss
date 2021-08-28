@@ -64,13 +64,13 @@
 	&__{}
 }
 
-@include media-breakpoint-down(xs) {
-	.fancybox__container {
-		width: 100% !important;
-		min-height: 100%;
-		transform: none !important;
-	}
-}
+//@include media-breakpoint-down(xs) {
+//	.fancybox__container {
+//		width: 100% !important;
+//		min-height: 100%;
+//		transform: none !important;
+//	}
+//}
 //
 .modal-adult{
 	max-width: rem(656) !important;
