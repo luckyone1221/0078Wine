@@ -24,7 +24,9 @@ $mail->Subject = 'Покупка с сайта AROMATNOE vineyard';
 $time = date('d.m.Y в H:i');
 $html = '
 <table style="width: 100%;">';
-
+    if (!empty($_POST['message-from'])) {
+        $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;">Заявка отправлена с форми:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['message-from'] . '</b></td></tr>';
+    }
     if (!empty($_POST['name'])) {
         $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;">Name:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['name'] . '</b></td></tr>';
     }
@@ -36,23 +38,40 @@ $html = '
     if (!empty($_POST['email'])) {
         $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Email:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['email'] . '</b></td></tr>';
     }
-    if (!empty($_POST['cart']){
+    //modal reg
+    if (!empty($_POST['cert-num'])) {
+        $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Номер сертификата:</td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['cert-num'] . '</b></td></tr>';
+    }
+    if (!empty($_POST['cert-code'])) {
+        $html .= ' <tr style="background-color: #f8f8f8;"> <td style="padding: 10px; border: #e9e9e9 1px solid;"> Скретч код: </td>   <td style="padding: 10px; border: #e9e9e9 1px solid;">' . $_POST['cert-code'] . '</b></td></tr>';
+    }
+    //cart
+    if (!empty($_POST['cart'])) {
         $cart_data = json_decode($_POST['cart']);
-        $html .= '<tr style="background-color: #89785F;"> 
-                    <td style="padding: 10px; border: #e9e9e9 1px solid;"> Корзина:</td>
+        $html .= '<tr style="background-color: #89785F; color: #fff;"> 
+                    <td style="padding: 10px; border: #e9e9e9 1px solid;" colspan="2"> Корзина:</td>
                   </tr>';
         foreach ($cart_data as $item_id => $item_props){
+            $html .= '<tr style="background-color: white; color: #fff;"> 
+                    <td style="padding: 10px;"></td>
+                  </tr>';
             foreach ($item_props as $prop_name => $prop_val){
-                $html .= '<tr style="background-color: #f8f8f8;">
+                if ($prop_name !== 'radioOptions'){
+                    $html .= '<tr style="background-color: #f8f8f8;">
                         <td style="padding: 10px; border: #e9e9e9 1px solid;">
                           ' . $prop_name . '
                         </td>
                         <td style="padding: 10px; border: #e9e9e9 1px solid;">
                           ' . $prop_val . '
                         </td>
-                        </tr>';
+                    </tr>';
+                }
             }
+            $html .= '<tr style="background-color: #f8f8f8;"></tr>';
         }
+        $html .= '<tr style="background-color: #89785F; color: #fff;"> 
+                    <td style="padding: 10px; border: #e9e9e9 1px solid; color: transparent;" colspan="2">.</td>
+                  </tr>';
     }
 
 

@@ -4,27 +4,28 @@ mixin sCart(data)
 		+e.container.container
 			+e.main-row.row.gy-5
 				+e.left-col.col-lg-7.col-xl-6
-					+e.H4.title.ps-base-4 Моя корзина:
+					+e.H4.title Моя корзина:
 					+e.items.cart-items-js
-						//+sCartItem({
-						//	price: '10 000',
-						//	name: 'Сертификат винодела',
-						//	descr: 'ящик (6 бутылок)',
-						//})
-						//+sCartItem({
-						//	price: '5 000',
-						//	name: 'Сертификат винодела',
-						//	descr: '3 бутылки',
-						//})
+						//-
+							//+sCartItem({
+							//	price: '10 000',
+							//	name: 'Сертификат винодела',
+							//	descr: 'ящик (6 бутылок)',
+							//})
+							//+sCartItem({
+							//	price: '5 000',
+							//	name: 'Сертификат винодела',
+							//	descr: '3 бутылки',
+							//})
 				+e.right-col.col-lg-5.col-xl-6
 					+e.H4.title--mb-alt Персональная информация
-					+form-wrap()
+					+form-wrap('Корзина')
 						.hidden-inputs-js.d-none
-							input(type="hidden" value="" class="cart-inp-js")
+							input(type="hidden" value="" class="cart-inp-js" name="cart")
 						+e.inputs
-							+input('E-mail', 'email')
-							+input('Ваше имя', 'text', undefined, 'name')
-							+input('+7 (999) 999 99 99 ', 'tel', undefined, 'tel')
+							+input('E-mail', 'email')(required)
+							+input('Ваше имя', 'text', undefined, 'name')(required)
+							+input('+7 (999) 999 99 99 ', 'tel', undefined, 'tel')(required)
 						.text-center
 							+e.pay-btn(type="submit") ОПЛАТИТЬ
 	// end sCart

@@ -22,7 +22,7 @@ mixin sCert(data)
 						+e.a-txt
 							p Уже приобрели сертификат?
 							p Вы можете его зарегистрировать!
-						+e.a-btn(href="#")
+						+e.a-btn.link-modal-js(href="#modal-reg")
 							span Перейти к регистрации
 							+e.a-icon
 								img(loading="lazy" src='img/svg/long-arrow-right.svg' alt="")
@@ -65,18 +65,20 @@ mixin sCert(data)
 			})
 			+sCertItem({
 				imgNum: 5,
-				itemName: 'Футболка “WINE”',
+				itemName: 'Футболка “WINE” черная',
 				itemNameId: 'prodItem5',
-				descr: 'черная',
 				priceVal: `2 000`,
-			})
+			})(
+				data-checked-radio='M'
+				data-radio-options="S,M,L,XL"
+			)
 				+e.black-title Футболка “WINE” ЧЕРНАЯ
 				+e.size-txt Размер:
 				+e.radio-row.row.justify-content-center
-					+sCertRadioItem('S', 'size-radio')
-					+sCertRadioItem('M', 'size-radio')(checked)
-					+sCertRadioItem('L', 'size-radio')
-					+sCertRadioItem('XL', 'size-radio')
+					+sCertRadioItem('S', 'radio-group')(class="inp-radio-js")
+					+sCertRadioItem('M', 'radio-group')(class="inp-radio-js" checked)
+					+sCertRadioItem('L', 'radio-group')(class="inp-radio-js")
+					+sCertRadioItem('XL', 'radio-group')(class="inp-radio-js")
 			+sCertItem({
 				imgNum: 6,
 				itemNameId: 'prodItem6',
@@ -97,7 +99,7 @@ mixin sCert(data)
 
 mixin sCertRadioItem(txt, name)
 	.col-auto
-		+in-c('radio', '', name)&attributes(attributes)
+		+in-c('radio', '', name, txt)&attributes(attributes)
 			span.circle=txt
 
 mixin sCertItem(data)
@@ -108,7 +110,7 @@ mixin sCertItem(data)
 				data-descr=data.descr
 				data-price=data.priceVal
 				id=data.itemNameId
-			)
+			)&attributes(attributes)
 			+e.img
 				img(loading='lazy' src=`img/@2x/prod-item-${data.imgNum}.png` alt="")
 			+e.descr-bl
@@ -125,7 +127,7 @@ mixin sCertItem(data)
 					.col-auto
 						+e.controll
 							+e.c-btn--min.min-btn-js(type="button") -
-							+e.INPUT.input.form-control.amount-inp-js(pattern="[0-9]{1,2}" type="number" min="1" max="99" value="1")
+							+e.INPUT.input.form-control.amount-inp-js(type="number" min="1" max="99" value="1")
 							+e.c-btn--plus.plus-btn-js(type="button") +
 					.col
 						+e.add-btn.add-btn-js(type="button") Добавить в корзину

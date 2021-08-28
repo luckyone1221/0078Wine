@@ -28,24 +28,9 @@ const JSCCommon = {
 			l10n: {
 				Escape: "Закрыть",
 				NEXT: "Вперед",
-				PREV: "Назад" // PLAY_START: "Start slideshow",
-				// PLAY_STOP: "Pause slideshow",
-				// FULL_SCREEN: "Full screen",
-				// THUMBS: "Thumbnails",
-				// DOWNLOAD: "Download",
-				// SHARE: "Share",
-				// ZOOM: "Zoom"
-
-			} // beforeLoad: function () {
-			// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
-			// },
-			// afterClose: function () {
-			// 	root.style.setProperty('--spacing-end', null);
-			// },
-
-		}); // $(link).fancybox({
-		// });
-
+				PREV: "Назад"
+			}
+		});
 		$(".modal-close-js").click(function () {
 			Fancybox.close();
 		}); // fancybox.defaults.backFocus = false;
@@ -124,65 +109,11 @@ const JSCCommon = {
 	},
 
 	// /mobileMenu
-	// tabs  .
-	tabscostume(tab) {
-		// const tabs = document.querySelectorAll(tab);
-		// const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
-		// tabs.forEach(element => {
-		// 	let tabs = element;
-		// 	const tabsCaption = tabs.querySelector(".tabs__caption");
-		// 	const tabsBtn = tabsCaption.querySelectorAll(".tabs__btn");
-		// 	const tabsWrap = tabs.querySelector(".tabs__wrap");
-		// 	const tabsContent = tabsWrap.querySelectorAll(".tabs__content");
-		// 	const random = Math.trunc(Math.random() * 1000);
-		// 	tabsBtn.forEach((el, index) => {
-		// 		const data = `tab-content-${random}-${index}`;
-		// 		el.dataset.tabBtn = data;
-		// 		const content = tabsContent[index];
-		// 		content.dataset.tabContent = data;
-		// 		if (!content.dataset.tabContent == data) return;
-		// 		const active = content.classList.contains('active') ? 'active' : '';
-		// 		// console.log(el.innerHTML);
-		// 		content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary  mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
-		// 	})
-		// 	tabs.addEventListener('click', function (element) {
-		// 		const btn = element.target.closest(`[data-tab-btn]:not(.active)`);
-		// 		if (!btn) return;
-		// 		const data = btn.dataset.tabBtn;
-		// 		const tabsAllBtn = this.querySelectorAll(`[data-tab-btn`);
-		// 		const content = this.querySelectorAll(`[data-tab-content]`);
-		// 		tabsAllBtn.forEach(element => {
-		// 			element.dataset.tabBtn == data
-		// 				? element.classList.add('active')
-		// 				: element.classList.remove('active')
-		// 		});
-		// 		content.forEach(element => {
-		// 			element.dataset.tabContent == data
-		// 				? (element.classList.add('active'), element.previousSibling.classList.add('active'))
-		// 				: element.classList.remove('active')
-		// 		});
-		// 	})
-		// })
-		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
-			$(this).addClass('active').siblings().removeClass('active').closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active').eq($(this).index()).fadeIn().addClass('active');
-		});
-	},
-
-	// /tabs
 	inputMask() {
 		// mask for input
 		let InputTel = [].slice.call(document.querySelectorAll('input[type="tel"]'));
 		InputTel.forEach(element => element.setAttribute("pattern", "[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}"));
 		Inputmask("+9(999)999-99-99").mask(InputTel);
-	},
-
-	// /inputMask
-	ifie() {
-		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-
-		if (isIE11) {
-			document.body.insertAdjacentHTML("beforeend", '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>');
-		}
 	},
 
 	sendForm() {
@@ -206,9 +137,11 @@ const JSCCommon = {
 			const th = $(this);
 			var data = th.serialize(); //check cart on empty
 
-			if (this.querySelector('.cart-inp-js').value === '' || this.querySelector('.cart-inp-js').value === '{}') {
+			let thisIsCartForm = this.querySelector('input[name="message-from"]').value === 'Корзина';
+
+			if (thisIsCartForm && (this.querySelector('.cart-inp-js').value === '' || this.querySelector('.cart-inp-js').value === '{}')) {
 				let cartWrap = document.querySelector('.cart-items-js');
-				cartWrap.innerHTML = '<h4>Что бдем Покупать?</h4>';
+				cartWrap.innerHTML = '<h5>Что бдем Покупать?</h5>';
 				return;
 			}
 
@@ -225,15 +158,14 @@ const JSCCommon = {
 				Fancybox.show([{
 					src: "#modal-thanks",
 					type: "inline"
-				}]); // window.location.replace("/thanks.html");
-
+				}]);
+				console.log('everything is ok');
 				setTimeout(function () {
-					// Done Functions
-					th.trigger("reset"); // $.magnificPopup.close();
-					// ym(53383120, 'reachGoal', 'zakaz');
-					// yaCounter55828534.reachGoal('zakaz');
+					th.trigger("reset");
 				}, 4000);
-			}).fail(function () {});
+			}).fail(function () {
+				console.log('something went wrong');
+			});
 		});
 	},
 
@@ -250,63 +182,31 @@ const JSCCommon = {
 		}, {
 			passive: true
 		});
-	},
-
-	animateScroll() {
-		$(document).on('click', " .menu li a, .scroll-link", function () {
-			const elementClick = $(this).attr("href");
-
-			if (!document.querySelector(elementClick)) {
-				$(this).attr("href", '/' + elementClick);
-			} else {
-				let destination = $(elementClick).offset().top;
-				$('html, body').animate({
-					scrollTop: destination - 80
-				}, 0);
-				return false;
-			}
-		});
-	},
-
-	getCurrentYear(el) {
-		let now = new Date();
-		let currentYear = document.querySelector(el);
-		if (currentYear) currentYear.innerText = now.getFullYear();
-	},
-
-	checkEmptyVal() {
-		this.value !== '' || this.tagName == "SELECT" && this.querySelector('option').value !== null && this.querySelector('option').text || this.type == "date" ? $(this).addClass('not-empty') : $(this).removeClass('not-empty');
 	}
 
 };
 const $ = jQuery;
 
 function eventHandler() {
-	// JSCCommon.ifie();
-	JSCCommon.modalCall(); // JSCCommon.tabscostume('tabs');
-
+	JSCCommon.modalCall();
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask();
-	JSCCommon.sendForm(); // JSCCommon.heightwindow();
-	// JSCCommon.animateScroll();
-	// $('.has-ph-js').blur(JSCCommon.checkEmptyVal).each(JSCCommon.checkEmptyVal);
-	// $('.has-ph-js.select-custom--js').on('select', JSCCommon.checkEmptyVal);
-	// JSCCommon.CustomInputFile(); 
-
-	var x = window.location.host;
-	let screenName;
-	screenName = document.body.dataset.bg;
-
-	if (screenName && x.includes("localhost:30")) {
-		document.body.insertAdjacentHTML("beforeend", "<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
-	} // modal window
+	JSCCommon.sendForm();
+	JSCCommon.heightwindow(); // var x = window.location.host;
+	// let screenName;
+	// screenName = document.body.dataset.bg;
+	// if (screenName && x.includes("localhost:30")) {
+	// 	document.body.insertAdjacentHTML("beforeend", `<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
+	// }
+	// modal window
 	//luckyoneJs
 
-
 	let topNav = document.querySelector(".top-nav--js");
+	let headerH = 0;
 
 	function calcHeaderHeight() {
 		document.documentElement.style.setProperty('--header-h', "".concat(topNav.offsetHeight, "px"));
+		headerH = topNav.offsetHeight;
 		if (!topNav) return;
 		window.scrollY > 0 ? topNav.classList.add('fixed') : topNav.classList.remove('fixed');
 	}
@@ -317,7 +217,22 @@ function eventHandler() {
 	window.addEventListener('scroll', calcHeaderHeight, {
 		passive: true
 	});
-	calcHeaderHeight(); //
+	calcHeaderHeight(); //animate scroll
+
+	$(document).on('click', ".menu li a, .scroll-link", function () {
+		event.preventDefault();
+		let elementClick = $(this).attr("href");
+
+		if (!document.querySelector(elementClick)) {
+			$(this).attr("href", '/' + elementClick);
+		} else {
+			let destination = $(elementClick).offset().top;
+			$('html, body').animate({
+				scrollTop: destination - headerH
+			}, 0);
+			return false;
+		}
+	}); //
 
 	let sSliderSlider = new Swiper('.sSlider-slider-js', {
 		slidesPerView: 'auto',
@@ -325,8 +240,7 @@ function eventHandler() {
 		spaceBetween: 36,
 		pagination: {
 			el: '.swiper-pagination',
-			type: "progressbar" //type: 'bullets',
-
+			type: "progressbar"
 		},
 		navigation: {
 			nextEl: '.swiper-next',
@@ -359,7 +273,6 @@ function eventHandler() {
 			$(visiable).toggleClass('active');
 		});
 	} //cart
-	//controll
 
 
 	let cart = {
@@ -372,6 +285,7 @@ function eventHandler() {
 			let min = Proditem.querySelector('.min-btn-js');
 			let plus = Proditem.querySelector('.plus-btn-js');
 			let add = Proditem.querySelector('.add-btn-js');
+			let radioItems = Proditem.querySelectorAll('.inp-radio-js');
 			$(min).click(function () {
 				inp.value = Number(inp.value) - 1;
 				!inp.reportValidity() ? inp.value = 1 : '';
@@ -386,15 +300,31 @@ function eventHandler() {
 				!inp.reportValidity() ? inp.value = 1 : '';
 				Proditem.setAttribute('data-amount', inp.value);
 			});
-			$(add).click(cart.addProdItem.bind(this, Proditem));
+			$(add).click(cart.addProdItem.bind(this, Proditem)); //-
+
+			$(radioItems).change(function () {
+				let checkedRadio;
+
+				for (let radio of radioItems) {
+					if (radio.checked) {
+						checkedRadio = radio;
+					}
+				}
+
+				Proditem.setAttribute("data-checked-radio", checkedRadio.value);
+			});
 		},
 		addProdItem: function (Proditem) {
 			let itemProps = {
 				name: Proditem.getAttribute('data-name'),
 				descr: Proditem.getAttribute('data-descr'),
 				price: Proditem.getAttribute('data-price'),
-				amount: Proditem.getAttribute('data-amount')
-			};
+				amount: Proditem.getAttribute('data-amount'),
+				radioOptions: Proditem.getAttribute('data-radio-options'),
+				checkedRadio: Proditem.getAttribute('data-checked-radio')
+			}; //remove null values
+
+			Object.keys(itemProps).forEach(key => itemProps[key] === null ? delete itemProps[key] : {});
 			this.cartItems[Proditem.getAttribute('id')] = itemProps;
 			this.renderCart();
 		},
@@ -417,6 +347,7 @@ function eventHandler() {
 			let inp = cartItem.querySelector('.amount-inp-js');
 			let min = cartItem.querySelector('.min-btn-js');
 			let plus = cartItem.querySelector('.plus-btn-js');
+			let radioItems = cartItem.querySelectorAll('input[type="radio"]');
 			let removeBtn = cartItem.querySelector('.remove-btn-js');
 			$(min).click(function () {
 				inp.value = Number(inp.value) - 1;
@@ -431,6 +362,22 @@ function eventHandler() {
 			$(inp).change(function () {
 				!inp.reportValidity() ? inp.value = 1 : '';
 				cart.onCartInputChange(cartItem);
+			}); //-
+
+			$(radioItems).change(function () {
+				let checkedRadio;
+
+				for (let radio of radioItems) {
+					if (radio.checked) {
+						checkedRadio = radio;
+					}
+				}
+
+				let thisProdItemRadio = thisProdItem.querySelector("input[type=\"radio\"][value=".concat(checkedRadio.value, "]"));
+				thisProdItemRadio.checked = true;
+				thisProdItem.setAttribute('data-checked-radio', checkedRadio.value);
+				cart.cartItems[thisProdItemId].checkedRadio = checkedRadio.value;
+				cart.renderCart();
 			});
 			$(removeBtn).click(function () {
 				delete cart.cartItems[thisProdItemId];
@@ -439,13 +386,25 @@ function eventHandler() {
 				cart.renderCart();
 			});
 		},
+		getRadioRow: function (itemObj) {
+			if (itemObj.radioOptions) {
+				let radioOptionsArr = itemObj.radioOptions.split(',');
+				let radioItems = '';
+
+				for (let option of radioOptionsArr) {
+					radioItems += "<div class=\"col-auto\">\n\t\t\t\t\t\t<label class=\"cart-radio\">\n\t\t\t\t\t\t\t<input \n\t\t\t\t\t\t\t\ttype=\"radio\" \n\t\t\t\t\t\t\t\tclass=\"invisible\"\n\t\t\t\t\t\t\t\tname=\"cart-radio-group\" \n\t\t\t\t\t\t\t\tvalue=\"".concat(option, "\" \n\t\t\t\t\t\t\t\t").concat(itemObj.checkedRadio === option && 'checked', ">\n\t\t\t\t\t\t\t<span class=\"circle\">\n\t\t\t\t\t\t\t\t").concat(option, "\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</label>\n\t\t\t\t\t</div>");
+				}
+
+				return "<div class=\"row gx-2 gy-2 pt-2\">\n\t\t\t\t\t\t".concat(radioItems, "\n\t\t\t\t\t</div>");
+			}
+		},
 		getCardTemplate: function (itemObj, itemId) {
 			// cart-item-js[data-prod-item-id]
 			// amount-inp-js
 			// min-btn-js
 			// plus-btn-js
 			// remove-btn-js
-			let template = "\n\t\t\t\t<div class=\"sCart__item cart-item-js\" data-prod-item-id=\"".concat(itemId, "\">\n\t\t\t\t\t<div class=\"sCart__i-row row align-items-center gy-3\">\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__num\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col\">\n\t\t\t\t\t\t\t<div class=\"sCart__name\">\n\t\t\t\t\t\t\t\t").concat(itemObj.name, "\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t").concat(itemObj.descr && "<div class=\"sCart__descr\"> ".concat(itemObj.descr, " </div>") || '', "\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-12 m-0 d-md-none\"></div>\n\t\t\t\t\t\t<div class=\"col col-md-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__control\">\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--minus min-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t-\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<input \n\t\t\t\t\t\t\t\t\tclass=\"sCart__input form-control amount-inp-js\"\n\t\t\t\t\t\t\t\t\tpattern=\"[0-9]{1,2}\" type=\"number\" min=\"1\" max=\"99\"\n\t\t\t\t\t\t\t\t\tvalue=\"").concat(itemObj.amount, "\" />\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--plus plus-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t+\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__price\">\n\t\t\t\t\t\t\t\t<b>").concat(Number(itemObj.amount.replace(/\s/g, '')) * Number(itemObj.price.replace(/\s/g, '')), "</b>\n\t\t\t\t\t\t\t\t\u0440.\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<button class=\"sCart__remove-btn remove-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t+\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t");
+			let template = "\n\t\t\t\t<div class=\"sCart__item cart-item-js\" data-prod-item-id=\"".concat(itemId, "\">\n\t\t\t\t\t<div class=\"sCart__i-row row align-items-center gy-3\">\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__num\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col\">\n\t\t\t\t\t\t\t<div class=\"sCart__name\">\n\t\t\t\t\t\t\t\t").concat(itemObj.name, "\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t").concat(itemObj.descr && "<div class=\"sCart__descr\"> ".concat(itemObj.descr, " </div>") || '', "\n\t\t\t\t\t\t\t").concat(this.getRadioRow(itemObj) || '', "\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-12 m-0 d-md-none\"></div>\n\t\t\t\t\t\t<div class=\"col col-md-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__control\">\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--minus min-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t-\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<input \n\t\t\t\t\t\t\t\t\tclass=\"sCart__input form-control amount-inp-js\"\n\t\t\t\t\t\t\t\t\ttype=\"number\" min=\"1\" max=\"99\"\n\t\t\t\t\t\t\t\t\tvalue=\"").concat(itemObj.amount, "\" />\n\t\t\t\t\t\t\t\t<button class=\"sCart__btn sCart__btn--plus plus-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t\t+\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<div class=\"sCart__price\">\n\t\t\t\t\t\t\t\t<b>").concat(Number(itemObj.amount.replace(/\s/g, '')) * Number(itemObj.price.replace(/\s/g, '')), "</b>\n\t\t\t\t\t\t\t\t\u0440.\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-auto\">\n\t\t\t\t\t\t\t<button class=\"sCart__remove-btn remove-btn-js\" type=\"button\">\n\t\t\t\t\t\t\t\t<!-- <img src=\"img/svg/cross.svg\" alt=\"\">-->\n\t\t\t\t\t\t\t\t\xD7\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t");
 			return template;
 		},
 		renderCart: function () {
@@ -485,6 +444,62 @@ function eventHandler() {
 			nextEl: '.sSoc--js .swiper-next',
 			prevEl: '.sSoc--js .swiper-prev'
 		}
+	}); //
+
+	function getCookieObj() {
+		return document.cookie.split(';').map(function (c) {
+			return c.trim().split('=').map(decodeURIComponent);
+		}).reduce(function (a, b) {
+			try {
+				a[b[0]] = JSON.parse(b[1]);
+			} catch (e) {
+				a[b[0]] = b[1];
+			}
+
+			return a;
+		}, {});
+	} //document.cookie = "ageConfirmed=false";
+
+
+	window.setTimeout(function () {
+		//set this in order avoid empty cookie case
+		document.cookie = "user=John";
+		let cookieObj = getCookieObj();
+		if (cookieObj.ageConfirmed) return;
+		new Fancybox([{
+			src: "#modal-adult",
+			type: "inline"
+		}], {
+			on: {
+				closing: (fancybox, slide) => {
+					let adultChb = document.querySelector('.adult-chek-js');
+
+					if (adultChb.checked) {
+						Fancybox.close();
+						document.cookie = "ageConfirmed=true";
+					} else {
+						document.location.replace('http://www.kalininnews.ru/news/2018-03-29/chto-grozit-nesovershennoletnim-za-raspitie-alkogolya/');
+					}
+				}
+			}
+		});
+	}, 500); //
+
+	$('.go-next-step-js').click(function () {
+		let stepParent = this.closest('.modal-reg-step-js');
+		let stepInputs = stepParent.querySelectorAll('input[required]');
+		let inputsValid = [];
+
+		for (let input of stepInputs) {
+			inputsValid.push(input.reportValidity());
+		}
+
+		if (inputsValid.reduce((accumulator = 'true', currentValue) => accumulator && currentValue) || inputsValid.length === 0) {
+			$(stepParent).slideUp(function () {
+				$(this).removeClass('active');
+				$(this.nextElementSibling).addClass('active');
+			});
+		}
 	}); //end luckyoneJs
 }
 
@@ -494,10 +509,4 @@ if (document.readyState !== 'loading') {
 	eventHandler();
 } else {
 	document.addEventListener('DOMContentLoaded', eventHandler);
-} // window.onload = function () {
-// 	document.body.classList.add('loaded_hiding');
-// 	window.setTimeout(function () {
-// 		document.body.classList.add('loaded');
-// 		document.body.classList.remove('loaded_hiding');
-// 	}, 500);
-// }
+}

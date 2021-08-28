@@ -83,7 +83,10 @@
 
 	font-family: $mono;
 	font-weight: bold;
-	font-size: rfs-fluid-value(rem(150));
+	font-size: rfs-fluid-value(rem(120));
+	@include media-breakpoint-up(base){
+		font-size: rfs-fluid-value(rem(150));
+	}
 	line-height: 1;
 	color: rgba(245, 245, 245, 1);
 }

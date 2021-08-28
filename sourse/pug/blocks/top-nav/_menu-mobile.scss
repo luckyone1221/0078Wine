@@ -79,7 +79,7 @@ $h: 2px;
 	z-index: 999;
 	max-width: 85%;
 	height: calc(var(--vh, 1vh) * 100);
-	width: 280px;
+	width: 380px;
 	top: 0;
 	// left: 0;
 	right: 0;
@@ -164,7 +164,7 @@ $h: 2px;
 			font-weight: 400;
 			color: $milk;
 
-			display: block;
+			display: inline-block;
 			position: relative;
 			z-index: 1;
 			&:after{

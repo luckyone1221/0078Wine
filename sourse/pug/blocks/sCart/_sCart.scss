@@ -184,18 +184,18 @@
 
 		width: rem(47);
 		height: rem(47);
-		padding: 0;
+		padding: 0!important;
 		border-radius: 50%;
 
-		font-size: rem(44);
+		font-size: rem(30) !important;
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		text-align: center;
-
 		font-weight: 300;
 
-		transform: rotate(-45deg);
+		//transform: rotate(-45deg);
 	}
 	//
 
@@ -316,3 +316,34 @@
 		}
 	}
 } // end.sCart
+
+.cart-radio{
+	cursor: pointer;
+	input:checked + .circle{
+		border: 1px solid $white;
+		background: $white;
+		color: $black;
+	}
+
+	.circle{
+		@include mt();
+		border: 1px solid $gray-400;
+		background: transparent;
+		color: $white;
+
+		min-width: rem(36);
+		height: rem(36);
+		border-radius: rem(60);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+
+		font-family: $mono2;
+		font-weight: bold;
+		font-size: rem(17);
+		line-height: calc(24/17);
+	}
+
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d81343af-8780-4fae-9d65-8856ee8c05b9" name="https://test3.alekslv.in.net/" url="http://ftp.alekslv.in.net">
+        <fileTransfer host="ftp.alekslv.in.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
