@@ -116,59 +116,6 @@ const JSCCommon = {
 		Inputmask("+9(999)999-99-99").mask(InputTel);
 	},
 
-	sendForm() {
-		var gets = function () {
-			var a = window.location.search;
-			var b = new Object();
-			var c;
-			a = a.substring(1).split("&");
-
-			for (var i = 0; i < a.length; i++) {
-				c = a[i].split("=");
-				b[c[0]] = c[1];
-			}
-
-			return b;
-		}(); // form
-
-
-		$(document).on('submit', "form", function (e) {
-			event.preventDefault();
-			const th = $(this);
-			var data = th.serialize(); //check cart on empty
-
-			let thisIsCartForm = this.querySelector('input[name="message-from"]').value === 'Корзина';
-
-			if (thisIsCartForm && (this.querySelector('.cart-inp-js').value === '' || this.querySelector('.cart-inp-js').value === '{}')) {
-				let cartWrap = document.querySelector('.cart-items-js');
-				cartWrap.innerHTML = '<h5>Что бдем Покупать?</h5>';
-				return;
-			}
-
-			th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
-			th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
-			th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
-			th.find('.utm_campaign').val(decodeURIComponent(gets['utm_campaign'] || ''));
-			$.ajax({
-				url: 'action.php',
-				type: 'POST',
-				data: data
-			}).done(function (data) {
-				Fancybox.close();
-				Fancybox.show([{
-					src: "#modal-thanks",
-					type: "inline"
-				}]);
-				console.log('everything is ok');
-				setTimeout(function () {
-					th.trigger("reset");
-				}, 4000);
-			}).fail(function () {
-				console.log('something went wrong');
-			});
-		});
-	},
-
 	heightwindow() {
 		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 		let vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
@@ -191,7 +138,6 @@ function eventHandler() {
 	JSCCommon.modalCall();
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask();
-	JSCCommon.sendForm();
 	JSCCommon.heightwindow(); // var x = window.location.host;
 	// let screenName;
 	// screenName = document.body.dataset.bg;
@@ -278,6 +224,7 @@ function eventHandler() {
 	let cart = {
 		cartItems: {},
 		cartWrap: document.querySelector('.cart-items-js'),
+		catalogInputs: document.querySelectorAll('.prod-item--js input[type="number"]'),
 		hiddenInp: document.querySelector('.hidden-inputs-js input[type="hidden"]'),
 		makeProdControlls: function (Proditem) {
 			let cart = this;
@@ -424,9 +371,28 @@ function eventHandler() {
 		},
 		//
 		renderHiddenInps: function () {
-			this.hiddenInp.value = JSON.stringify(this.cartItems);
+			let translatedCartItems = JSON.stringify(this.cartItems);
+			console.log(typeof translatedCartItems);
+			translatedCartItems = translatedCartItems.replaceAll('name', 'Название товара');
+			translatedCartItems = translatedCartItems.replaceAll('price', 'Цена');
+			translatedCartItems = translatedCartItems.replaceAll('amount', 'Количество');
+			translatedCartItems = translatedCartItems.replaceAll('checkedRadio', 'Размер футблоки');
+			console.log(translatedCartItems);
+			this.hiddenInp.value = translatedCartItems;
+		},
+		reset: function () {
+			this.cartItems = {};
+			$(this.catalogInputs).each(function () {
+				console.log(this);
+				this.value = 1;
+			});
+			this.renderCart();
 		}
-	}; //start cart
+	}; //-
+	// window.setTimeout(function (){
+	// 	cart.reset();
+	// }, 3000);
+	//start cart
 
 	$('.prod-item--js').each(function () {
 		cart.makeProdControlls(this);
@@ -529,11 +495,68 @@ function eventHandler() {
 	// getMediaByUsername('instagram').then((media) => {
 	// 	console.log(media);
 	// });
+	// const getMediaByUsername = window.Nanogram.getMediaByUsername;
+	//
+	// getMediaByUsername('luckyone612').then((media) => {
+	// 	console.log(media);
+	// });
+	//end luckyoneJs
+	//sendForm
 
-	const getMediaByUsername = window.Nanogram.getMediaByUsername;
-	getMediaByUsername('luckyone612').then(media => {
-		console.log(media);
-	}); //end luckyoneJs
+	var gets = function () {
+		var a = window.location.search;
+		var b = new Object();
+		var c;
+		a = a.substring(1).split("&");
+
+		for (var i = 0; i < a.length; i++) {
+			c = a[i].split("=");
+			b[c[0]] = c[1];
+		}
+
+		return b;
+	}(); // form
+
+
+	$(document).on('submit', "form", function (e) {
+		event.preventDefault();
+		const th = $(this);
+		var data = th.serialize(); //check cart on empty
+
+		let thisIsCartForm = this.querySelector('input[name="message-from"]').value === 'Корзина';
+
+		if (thisIsCartForm && (this.querySelector('.cart-inp-js').value === '' || this.querySelector('.cart-inp-js').value === '{}')) {
+			let cartWrap = document.querySelector('.cart-items-js');
+			cartWrap.innerHTML = '<h5>Что бдем Покупать?</h5>';
+			return;
+		}
+
+		th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
+		th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
+		th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
+		th.find('.utm_campaign').val(decodeURIComponent(gets['utm_campaign'] || ''));
+		$.ajax({
+			url: 'action.php',
+			type: 'POST',
+			data: data
+		}).done(function (data) {
+			if (thisIsCartForm) {
+				cart.reset();
+			}
+
+			Fancybox.close();
+			Fancybox.show([{
+				src: "#modal-thanks",
+				type: "inline"
+			}]);
+			console.log('everything is ok');
+			setTimeout(function () {
+				th.trigger("reset");
+			}, 4000);
+		}).fail(function () {
+			console.log('something went wrong');
+		});
+	}); //
 }
 
 ;
